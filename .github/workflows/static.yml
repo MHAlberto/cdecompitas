@@ -37,7 +37,11 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload entire repository
+<<<<<<< HEAD
           path: "."
+=======
+          path: '.'
+>>>>>>> 098630cff574b1171e909f5c199465f16ba85f68
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
