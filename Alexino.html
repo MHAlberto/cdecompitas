@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ALEXIÑO - The Thunder Striker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Press Start+2P", cursive;
+        background: linear-gradient(
+          135deg,
+          #001a33 0%,
+          #003d7a 50%,
+          #002147 100%
+        );
+        overflow-x: hidden;
+      }
+
+      .glow-blue {
+        text-shadow:
+          0 0 10px rgba(59, 130, 246, 0.8),
+          0 0 20px rgba(59, 130, 246, 0.6),
+          0 0 30px rgba(59, 130, 246, 0.4);
+      }
+
+      .scanline {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: repeating-linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0.15),
+          rgba(0, 0, 0, 0.15) 1px,
+          transparent 1px,
+          transparent 2px
+        );
+        pointer-events: none;
+        z-index: 9999;
+      }
+
+      .stat-bar {
+        background: rgba(0, 0, 0, 0.5);
+        border: 2px solid #3b82f6;
+        height: 30px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .stat-fill {
+        background: linear-gradient(90deg, #3b82f6, #06b6d4);
+        height: 100%;
+        transition: width 1s ease;
+        box-shadow: 0 0 10px rgba(59, 130, 246, 0.8);
+      }
+
+      .lightning-particle {
+        position: fixed;
+        width: 2px;
+        height: 40px;
+        background: linear-gradient(180deg, transparent, #3b82f6, transparent);
+        pointer-events: none;
+        animation: lightning 0.5s linear;
+      }
+
+      @keyframes lightning {
+        0% {
+          transform: translateY(-100px);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(100vh);
+          opacity: 0;
+        }
+      }
+
+      .back-button {
+        transition: all 0.3s ease;
+      }
+
+      .back-button:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.8);
+      }
+
+      @keyframes zap {
+        0%,
+        100% {
+          transform: scale(1) rotate(0deg);
+        }
+        25% {
+          transform: scale(1.1) rotate(-5deg);
+        }
+        75% {
+          transform: scale(1.1) rotate(5deg);
+        }
+      }
+
+      .zap {
+        animation: zap 0.5s ease-in-out infinite;
+      }
+
+      .electric-border {
+        position: relative;
+      }
+
+      .electric-border::before {
+        content: "";
+        position: absolute;
+        inset: -2px;
+        background: linear-gradient(45deg, #3b82f6, #06b6d4, #3b82f6);
+        background-size: 200% 200%;
+        animation: electric 3s linear infinite;
+        border-radius: inherit;
+        z-index: -1;
+      }
+
+      @keyframes electric {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .pixel-font {
+          font-size: 0.6rem;
+        }
+      }
+    </style>
+  </head>
+  <body class="min-h-screen p-4 md:p-8">
+    <div class="scanline"></div>
+
+    <div class="max-w-6xl mx-auto">
+      <!-- Back button -->
+      <button
+        onclick="goBack()"
+        class="back-button bg-blue-600 hover:bg-blue-700 text-white px-4 md:px-6 py-2 md:py-3 rounded-lg mb-6 md:mb-8 text-xs md:text-sm border-2 border-cyan-400"
+      >
+        ← VOLVER AL MENÚ
+      </button>
+
+      <!-- Character Header -->
+      <div class="text-center mb-8 md:mb-12">
+        <div class="text-6xl md:text-9xl mb-4 md:mb-6 zap">⚡</div>
+        <h1 class="text-3xl md:text-6xl text-blue-400 glow-blue mb-4">
+          ALEXIÑO
+        </h1>
+        <p class="text-sm md:text-xl text-cyan-300">THE THUNDER STRIKER</p>
+      </div>
+
+      <!-- Story Section -->
+      <div
+        class="bg-black bg-opacity-70 border-4 border-blue-500 rounded-lg p-6 md:p-8 mb-6 md:mb-8 electric-border"
+      >
+        <h2 class="text-xl md:text-3xl text-blue-400 mb-4 md:mb-6 text-center">
+          HISTORIA
+        </h2>
+        <div class="text-xs md:text-sm text-gray-300 leading-relaxed space-y-4">
+          <p>
+            En el corazón de una tormenta eléctrica milenaria, cuando los rayos
+            conectaban cielo y tierra con furia descontrolada, nació Alexiño. No
+            como mortal, sino como la manifestación viva de la electricidad
+            pura. Su esencia es la velocidad misma, su sangre fluye con
+            corriente de un millón de voltios.
+          </p>
+          <p>
+            Dicen los antiguos que puede moverse más rápido que el pensamiento,
+            que sus golpes llevan la fuerza de mil relámpagos simultáneos. Cada
+            batalla que libra ilumina el cielo nocturno, cada enemigo que
+            enfrenta queda paralizado por descargas que superan cualquier
+            comprensión científica.
+          </p>
+          <p>
+            Portador del "Núcleo de Tormenta", un cristal que contiene la
+            primera chispa de energía del universo, Alexiño busca a los Cinco
+            Titanes del Caos que amenazan con sumir al mundo en oscuridad
+            eterna. Solo él, con su dominio absoluto sobre el rayo, puede
+            detenerlos.
+          </p>
+          <p class="text-blue-400 font-bold">
+            "La velocidad no es solo movimiento... es poder absoluto. ¡Y yo soy
+            la velocidad misma!"
+          </p>
+        </div>
+      </div>
+
+      <!-- Stats Section -->
+      <div
+        class="bg-black bg-opacity-70 border-4 border-blue-500 rounded-lg p-6 md:p-8 mb-6 md:mb-8"
+      >
+        <h2 class="text-xl md:text-3xl text-blue-400 mb-6 text-center">
+          ESTADÍSTICAS
+        </h2>
+
+        <div class="space-y-4">
+          <div>
+            <div class="flex justify-between mb-2 text-xs md:text-sm">
+              <span class="text-cyan-300">PODER ELÉCTRICO</span>
+              <span class="text-blue-400">96/100</span>
+            </div>
+            <div class="stat-bar">
+              <div class="stat-fill" style="width: 96%"></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="flex justify-between mb-2 text-xs md:text-sm">
+              <span class="text-cyan-300">VELOCIDAD</span>
+              <span class="text-blue-400">100/100</span>
+            </div>
+            <div class="stat-bar">
+              <div class="stat-fill" style="width: 100%"></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="flex justify-between mb-2 text-xs md:text-sm">
+              <span class="text-cyan-300">RESISTENCIA</span>
+              <span class="text-blue-400">84/100</span>
+            </div>
+            <div class="stat-bar">
+              <div class="stat-fill" style="width: 84%"></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="flex justify-between mb-2 text-xs md:text-sm">
+              <span class="text-cyan-300">INTELIGENCIA</span>
+              <span class="text-blue-400">91/100</span>
+            </div>
+            <div class="stat-bar">
+              <div class="stat-fill" style="width: 91%"></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="flex justify-between mb-2 text-xs md:text-sm">
+              <span class="text-cyan-300">CARISMA</span>
+              <span class="text-blue-400">87/100</span>
+            </div>
+            <div class="stat-bar">
+              <div class="stat-fill" style="width: 87%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Abilities Section -->
+      <div
+        class="bg-black bg-opacity-70 border-4 border-blue-500 rounded-lg p-6 md:p-8"
+      >
+        <h2 class="text-xl md:text-3xl text-blue-400 mb-6 text-center">
+          HABILIDADES ESPECIALES
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div
+            class="border-2 border-blue-500 p-4 rounded-lg bg-blue-900 bg-opacity-30"
+          >
+            <h3 class="text-sm md:text-lg text-cyan-300 mb-2">
+              ⚡ RAYO DEVASTADOR
+            </h3>
+            <p class="text-xs text-gray-400">
+              Invoca un rayo del cielo que aniquila todo en su camino.
+            </p>
+          </div>
+
+          <div
+            class="border-2 border-blue-500 p-4 rounded-lg bg-blue-900 bg-opacity-30"
+          >
+            <h3 class="text-sm md:text-lg text-cyan-300 mb-2">
+              💫 VELOCIDAD LUZ
+            </h3>
+            <p class="text-xs text-gray-400">
+              Se mueve a velocidades que desafían las leyes físicas.
+            </p>
+          </div>
+
+          <div
+            class="border-2 border-blue-500 p-4 rounded-lg bg-blue-900 bg-opacity-30"
+          >
+            <h3 class="text-sm md:text-lg text-cyan-300 mb-2">
+              🌩️ TORMENTA ELÉCTRICA
+            </h3>
+            <p class="text-xs text-gray-400">
+              Crea una tormenta que paraliza a todos los enemigos.
+            </p>
+          </div>
+
+          <div
+            class="border-2 border-blue-500 p-4 rounded-lg bg-blue-900 bg-opacity-30"
+          >
+            <h3 class="text-sm md:text-lg text-cyan-300 mb-2">
+              ⚡ CAMPO DE FUERZA
+            </h3>
+            <p class="text-xs text-gray-400">
+              Genera un escudo eléctrico que repele ataques.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function goBack() {
+        window.location.href = "index.html";
+      }
+
+      // Create lightning effects
+      setInterval(() => {
+        if (Math.random() > 0.7) {
+          const particle = document.createElement("div");
+          particle.className = "lightning-particle";
+          particle.style.left = Math.random() * window.innerWidth + "px";
+          particle.style.top = "-50px";
+          document.body.appendChild(particle);
+
+          setTimeout(() => {
+            particle.remove();
+          }, 500);
+        }
+      }, 150);
+    </script>
+  </body>
+</html>

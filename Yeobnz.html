@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YEOBNZ - The Golden Emperor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Press Start+2P", cursive;
+        background: linear-gradient(
+          135deg,
+          #2a1a00 0%,
+          #5c3d00 50%,
+          #3d2600 100%
+        );
+        overflow-x: hidden;
+      }
+
+      .glow-gold {
+        text-shadow:
+          0 0 10px rgba(251, 191, 36, 0.8),
+          0 0 20px rgba(251, 191, 36, 0.6),
+          0 0 30px rgba(251, 191, 36, 0.4);
+      }
+
+      .scanline {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: repeating-linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0.15),
+          rgba(0, 0, 0, 0.15) 1px,
+          transparent 1px,
+          transparent 2px
+        );
+        pointer-events: none;
+        z-index: 9999;
+      }
+
+      .stat-bar {
+        background: rgba(0, 0, 0, 0.5);
+        border: 2px solid #fbbf24;
+        height: 30px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .stat-fill {
+        background: linear-gradient(90deg, #fbbf24, #f59e0b);
+        height: 100%;
+        transition: width 1s ease;
+        box-shadow: 0 0 10px rgba(251, 191, 36, 0.8);
+      }
+
+      .gold-particle {
+        position: fixed;
+        width: 6px;
+        height: 6px;
+        background: #fbbf24;
+        border-radius: 50%;
+        pointer-events: none;
+        animation: sparkle 3s linear infinite;
+        box-shadow: 0 0 10px #fbbf24;
+      }
+
+      @keyframes sparkle {
+        0% {
+          transform: translateY(0) scale(0);
+          opacity: 0;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-100vh) scale(1);
+          opacity: 0;
+        }
+      }
+
+      .back-button {
+        transition: all 0.3s ease;
+      }
+
+      .back-button:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 20px rgba(251, 191, 36, 0.8);
+      }
+
+      @keyframes rotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .rotate {
+        animation: rotate 4s linear infinite;
+      }
+
+      .shine {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .shine::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+          45deg,
+          transparent 30%,
+          rgba(255, 255, 255, 0.3) 50%,
+          transparent 70%
+        );
+        animation: shine 3s infinite;
+      }
+
+      @keyframes shine {
+        0% {
+          transform: translateX(-100%) translateY(-100%) rotate(45deg);
+        }
+        100% {
+          transform: translateX(100%) translateY(100%) rotate(45deg);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .pixel-font {
+          font-size: 0.6rem;
+        }
+      }
+    </style>
+  </head>
+  <body class="min-h-screen p-4 md:p-8">
+    <div class="scanline"></div>
+
+    <div class="max-w-6xl mx-auto">
+      <!-- Back button -->
+      <button
+        onclick="goBack()"
+        class="back-button bg-yellow-600 hover:bg-yellow-700 text-white px-4 md:px-6 py-2 md:py-3 rounded-lg mb-6 md:mb-8 text-xs md:text-sm border-2 border-orange-400"
+      >
+        ← VOLVER AL MENÚ
+      </button>
+
+      <!-- Character Header -->
+      <div class="text-center mb-8 md:mb-12">
+        <div class="text-6xl md:text-9xl mb-4 md:mb-6 rotate">👑</div>
+        <h1 class="text-3xl md:text-6xl text-yellow-400 glow-gold mb-4">
+          YEOBNZ
+        </h1>
+        <p class="text-sm md:text-xl text-orange-300">THE GOLDEN EMPEROR</p>
+      </div>
+
+      <!-- Story Section -->
+      <div
+        class="bg-black bg-opacity-70 border-4 border-yellow-500 rounded-lg p-6 md:p-8 mb-6 md:mb-8 shine"
+      >
+        <h2
+          class="text-xl md:text-3xl text-yellow-400 mb-4 md:mb-6 text-center"
+        >
+          HISTORIA
+        </h2>
+        <div class="text-xs md:text-sm text-gray-300 leading-relaxed space-y-4">
+          <p>
+            Desde las minas doradas del Imperio Celestial, donde la riqueza es
+            infinita y el poder absoluto, surgió Yeobnz. No es solo un guerrero
+            ni un gobernante común. Es la encarnación de la prosperidad, la
+            abundancia y el liderazgo divino. Dicen que nació bajo una lluvia de
+            oro fundido y que su primer llanto resonó como campanas de victoria.
+          </p>
+          <p>
+            Con su Corona de las Mil Estrellas, forjada con fragmentos de
+            meteoritos dorados y bendecida por los antiguos dioses, Yeobnz
+            gobierna sobre los Siete Reinos Dorados. Su palabra es ley, su
+            justicia es absoluta, y su generosidad con los leales es legendaria.
+            Pero con aquellos que traicionan su confianza, su ira es comparable
+            a la furia del sol.
+          </p>
+          <p>
+            Maestro estratega, líder nato, y guerrero invencible en combate,
+            Yeobnz no solo pelea con espadas de oro puro que nunca se rompen,
+            sino con la sabiduría de mil batallas. Su misión actual: recuperar
+            el Tesoro de la Eternidad, robado por las Sombras del Olvido, antes
+            de que sumerjan al mundo en pobreza y caos.
+          </p>
+          <p class="text-yellow-400 font-bold">
+            "Un verdadero emperador no solo conquista reinos... conquista
+            corazones y mentes. Yo soy ambos."
+          </p>
+        </div>
+      </div>
+
+      <!-- Stats Section -->
+      <div
+        class="bg-black bg-opacity-70 border-4 border-yellow-500 rounded-lg p-6 md:p-8 mb-6 md:mb-8"
+      >
+        <h2 class="text-xl md:text-3xl text-yellow-400 mb-6 text-center">
+          ESTADÍSTICAS
+        </h2>
+
+        <div class="space-y-4">
+          <div>
+            <div class="flex justify-between mb-2 text-xs md:text-sm">
+              <span class="text-orange-300">LIDERAZGO</span>
+              <span class="text-yellow-400">100/100</span>
+            </div>
+            <div class="stat-bar">
+              <div class="stat-fill" style="width: 100%"></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="flex justify-between mb-2 text-xs md:text-sm">
+              <span class="text-orange-300">VELOCIDAD</span>
+              <span class="text-yellow-400">80/100</span>
+            </div>
+            <div class="stat-bar">
+              <div class="stat-fill" style="width: 80%"></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="flex justify-between mb-2 text-xs md:text-sm">
+              <span class="text-orange-300">RESISTENCIA</span>
+              <span class="text-yellow-400">93/100</span>
+            </div>
+            <div class="stat-bar">
+              <div class="stat-fill" style="width: 93%"></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="flex justify-between mb-2 text-xs md:text-sm">
+              <span class="text-orange-300">INTELIGENCIA</span>
+              <span class="text-yellow-400">98/100</span>
+            </div>
+            <div class="stat-bar">
+              <div class="stat-fill" style="width: 98%"></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="flex justify-between mb-2 text-xs md:text-sm">
+              <span class="text-orange-300">CARISMA</span>
+              <span class="text-yellow-400">100/100</span>
+            </div>
+            <div class="stat-bar">
+              <div class="stat-fill" style="width: 100%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Abilities Section -->
+      <div
+        class="bg-black bg-opacity-70 border-4 border-yellow-500 rounded-lg p-6 md:p-8"
+      >
+        <h2 class="text-xl md:text-3xl text-yellow-400 mb-6 text-center">
+          HABILIDADES ESPECIALES
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div
+            class="border-2 border-yellow-500 p-4 rounded-lg bg-yellow-900 bg-opacity-30"
+          >
+            <h3 class="text-sm md:text-lg text-orange-300 mb-2">
+              👑 DECRETO IMPERIAL
+            </h3>
+            <p class="text-xs text-gray-400">
+              Ordena a aliados aumentando sus habilidades al máximo.
+            </p>
+          </div>
+
+          <div
+            class="border-2 border-yellow-500 p-4 rounded-lg bg-yellow-900 bg-opacity-30"
+          >
+            <h3 class="text-sm md:text-lg text-orange-300 mb-2">
+              ⚔️ ESPADA DORADA
+            </h3>
+            <p class="text-xs text-gray-400">
+              Arma irrompible que corta cualquier defensa.
+            </p>
+          </div>
+
+          <div
+            class="border-2 border-yellow-500 p-4 rounded-lg bg-yellow-900 bg-opacity-30"
+          >
+            <h3 class="text-sm md:text-lg text-orange-300 mb-2">
+              💰 LLUVIA DE ORO
+            </h3>
+            <p class="text-xs text-gray-400">
+              Invoca monedas doradas que dañan enemigos y curan aliados.
+            </p>
+          </div>
+
+          <div
+            class="border-2 border-yellow-500 p-4 rounded-lg bg-yellow-900 bg-opacity-30"
+          >
+            <h3 class="text-sm md:text-lg text-orange-300 mb-2">
+              🛡️ ESCUDO REAL
+            </h3>
+            <p class="text-xs text-gray-400">
+              Barrera dorada impenetrable que protege a todo el equipo.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function goBack() {
+        window.location.href = "index.html";
+      }
+
+      // Create gold particles
+      setInterval(() => {
+        const particle = document.createElement("div");
+        particle.className = "gold-particle";
+        particle.style.left = Math.random() * window.innerWidth + "px";
+        particle.style.bottom = "0";
+        particle.style.animationDuration = Math.random() * 2 + 2 + "s";
+        particle.style.animationDelay = Math.random() * 1 + "s";
+        document.body.appendChild(particle);
+
+        setTimeout(() => {
+          particle.remove();
+        }, 3000);
+      }, 250);
+    </script>
+  </body>
+</html>

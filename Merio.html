@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MERIO - The Green Guardian</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Press Start+2P", cursive;
+        background: linear-gradient(
+          135deg,
+          #0a2e0a 0%,
+          #1a5c1a 50%,
+          #0f3a0f 100%
+        );
+        overflow-x: hidden;
+      }
+
+      .glow-green {
+        text-shadow:
+          0 0 10px rgba(34, 197, 94, 0.8),
+          0 0 20px rgba(34, 197, 94, 0.6),
+          0 0 30px rgba(34, 197, 94, 0.4);
+      }
+
+      .scanline {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: repeating-linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0.15),
+          rgba(0, 0, 0, 0.15) 1px,
+          transparent 1px,
+          transparent 2px
+        );
+        pointer-events: none;
+        z-index: 9999;
+      }
+
+      .stat-bar {
+        background: rgba(0, 0, 0, 0.5);
+        border: 2px solid #22c55e;
+        height: 30px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .stat-fill {
+        background: linear-gradient(90deg, #22c55e, #10b981);
+        height: 100%;
+        transition: width 1s ease;
+        box-shadow: 0 0 10px rgba(34, 197, 94, 0.8);
+      }
+
+      .leaf-particle {
+        position: fixed;
+        font-size: 20px;
+        pointer-events: none;
+        animation: fall 8s linear infinite;
+      }
+
+      @keyframes fall {
+        0% {
+          transform: translateY(-10vh) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(110vh) rotate(360deg);
+          opacity: 0.3;
+        }
+      }
+
+      .back-button {
+        transition: all 0.3s ease;
+      }
+
+      .back-button:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 20px rgba(34, 197, 94, 0.8);
+      }
+
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+
+      .bounce {
+        animation: bounce 1s ease-in-out infinite;
+      }
+
+      @media (max-width: 768px) {
+        .pixel-font {
+          font-size: 0.6rem;
+        }
+      }
+    </style>
+  </head>
+  <body class="min-h-screen p-4 md:p-8">
+    <div class="scanline"></div>
+
+    <div class="max-w-6xl mx-auto">
+      <!-- Back button -->
+      <button
+        onclick="goBack()"
+        class="back-button bg-green-600 hover:bg-green-700 text-white px-4 md:px-6 py-2 md:py-3 rounded-lg mb-6 md:mb-8 text-xs md:text-sm border-2 border-emerald-400"
+      >
+        ← VOLVER AL MENÚ
+      </button>
+
+      <!-- Character Header -->
+      <div class="text-center mb-8 md:mb-12">
+        <div class="text-6xl md:text-9xl mb-4 md:mb-6 bounce">🎮</div>
+        <h1 class="text-3xl md:text-6xl text-green-400 glow-green mb-4">
+          MERIO
+        </h1>
+        <p class="text-sm md:text-xl text-emerald-300">THE GREEN GUARDIAN</p>
+      </div>
+
+      <!-- Story Section -->
+      <div
+        class="bg-black bg-opacity-70 border-4 border-green-500 rounded-lg p-6 md:p-8 mb-6 md:mb-8"
+      >
+        <h2 class="text-xl md:text-3xl text-green-400 mb-4 md:mb-6 text-center">
+          HISTORIA
+        </h2>
+        <div class="text-xs md:text-sm text-gray-300 leading-relaxed space-y-4">
+          <p>
+            Nacido en los píxeles perdidos del Reino de las Tuberías, Merio es
+            más que un simple fontanero. Es el héroe legendario que ha salvado
+            mundos enteros saltando sobre abismos imposibles y derrotando
+            enemigos que parecían invencibles.
+          </p>
+          <p>
+            Su poder no reside solo en sus saltos legendarios o en su habilidad
+            para encontrar monedas ocultas en los lugares más extraños. Merio
+            posee una determinación inquebrantable y un corazón puro que lo hace
+            destacar entre todos los guerreros digitales.
+          </p>
+          <p>
+            Después de 40 años salvando princesas y reinos, Merio ha
+            evolucionado. Ahora domina el poder de los Power-Ups Cósmicos,
+            objetos mágicos que le otorgan habilidades más allá de la
+            comprensión de los mortales. Su última misión: detener al Glitch
+            Oscuro que amenaza con corromper todos los juegos del universo.
+          </p>
+          <p class="text-green-400 font-bold">
+            "¡Wahoo! ¡Lets-a-go! El verdadero poder está en nunca rendirse,
+            ¡okey-dokey!"
+          </p>
+        </div>
+      </div>
+
+      <!-- Stats Section -->
+      <div
+        class="bg-black bg-opacity-70 border-4 border-green-500 rounded-lg p-6 md:p-8 mb-6 md:mb-8"
+      >
+        <h2 class="text-xl md:text-3xl text-green-400 mb-6 text-center">
+          ESTADÍSTICAS
+        </h2>
+
+        <div class="space-y-4">
+          <div>
+            <div class="flex justify-between mb-2 text-xs md:text-sm">
+              <span class="text-emerald-300">SALTO</span>
+              <span class="text-green-400">100/100</span>
+            </div>
+            <div class="stat-bar">
+              <div class="stat-fill" style="width: 100%"></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="flex justify-between mb-2 text-xs md:text-sm">
+              <span class="text-emerald-300">VELOCIDAD</span>
+              <span class="text-green-400">92/100</span>
+            </div>
+            <div class="stat-bar">
+              <div class="stat-fill" style="width: 92%"></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="flex justify-between mb-2 text-xs md:text-sm">
+              <span class="text-emerald-300">RESISTENCIA</span>
+              <span class="text-green-400">88/100</span>
+            </div>
+            <div class="stat-bar">
+              <div class="stat-fill" style="width: 88%"></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="flex justify-between mb-2 text-xs md:text-sm">
+              <span class="text-emerald-300">INTELIGENCIA</span>
+              <span class="text-green-400">75/100</span>
+            </div>
+            <div class="stat-bar">
+              <div class="stat-fill" style="width: 75%"></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="flex justify-between mb-2 text-xs md:text-sm">
+              <span class="text-emerald-300">CARISMA</span>
+              <span class="text-green-400">96/100</span>
+            </div>
+            <div class="stat-bar">
+              <div class="stat-fill" style="width: 96%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Abilities Section -->
+      <div
+        class="bg-black bg-opacity-70 border-4 border-green-500 rounded-lg p-6 md:p-8"
+      >
+        <h2 class="text-xl md:text-3xl text-green-400 mb-6 text-center">
+          HABILIDADES ESPECIALES
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div
+            class="border-2 border-green-500 p-4 rounded-lg bg-green-900 bg-opacity-30"
+          >
+            <h3 class="text-sm md:text-lg text-emerald-300 mb-2">
+              ⭐ SUPER ESTRELLA
+            </h3>
+            <p class="text-xs text-gray-400">
+              Invencibilidad temporal que destruye todo a su paso.
+            </p>
+          </div>
+
+          <div
+            class="border-2 border-green-500 p-4 rounded-lg bg-green-900 bg-opacity-30"
+          >
+            <h3 class="text-sm md:text-lg text-emerald-300 mb-2">
+              🔥 BOLA DE FUEGO
+            </h3>
+            <p class="text-xs text-gray-400">
+              Lanza bolas de fuego rebotantes contra enemigos.
+            </p>
+          </div>
+
+          <div
+            class="border-2 border-green-500 p-4 rounded-lg bg-green-900 bg-opacity-30"
+          >
+            <h3 class="text-sm md:text-lg text-emerald-300 mb-2">
+              🦝 SUPER HOJA
+            </h3>
+            <p class="text-xs text-gray-400">
+              Vuela brevemente y ataca con la cola de mapache.
+            </p>
+          </div>
+
+          <div
+            class="border-2 border-green-500 p-4 rounded-lg bg-green-900 bg-opacity-30"
+          >
+            <h3 class="text-sm md:text-lg text-emerald-300 mb-2">
+              🌟 ULTRA SALTO
+            </h3>
+            <p class="text-xs text-gray-400">
+              Salto triple mejorado que alcanza alturas increíbles.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function goBack() {
+        window.location.href = "index.html";
+      }
+
+      // Create falling leaves
+      const leaves = ["🍃", "🍀", "🌿"];
+      setInterval(() => {
+        const particle = document.createElement("div");
+        particle.className = "leaf-particle";
+        particle.textContent =
+          leaves[Math.floor(Math.random() * leaves.length)];
+        particle.style.left = Math.random() * window.innerWidth + "px";
+        particle.style.top = "-50px";
+        particle.style.animationDuration = Math.random() * 5 + 5 + "s";
+        particle.style.animationDelay = Math.random() * 2 + "s";
+        document.body.appendChild(particle);
+
+        setTimeout(() => {
+          particle.remove();
+        }, 8000);
+      }, 400);
+    </script>
+  </body>
+</html>

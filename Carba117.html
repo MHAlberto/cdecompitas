@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CARBA117 - The Fire Legend</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Press Start+2P", cursive;
+        background: linear-gradient(
+          135deg,
+          #1a0a00 0%,
+          #4a1a00 50%,
+          #2a0a00 100%
+        );
+        overflow-x: hidden;
+      }
+
+      .glow-red {
+        text-shadow:
+          0 0 10px rgba(255, 100, 0, 0.8),
+          0 0 20px rgba(255, 100, 0, 0.6),
+          0 0 30px rgba(255, 100, 0, 0.4);
+      }
+
+      .scanline {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: repeating-linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0.15),
+          rgba(0, 0, 0, 0.15) 1px,
+          transparent 1px,
+          transparent 2px
+        );
+        pointer-events: none;
+        z-index: 9999;
+      }
+
+      .stat-bar {
+        background: rgba(0, 0, 0, 0.5);
+        border: 2px solid #ff6400;
+        height: 30px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .stat-fill {
+        background: linear-gradient(90deg, #ff6400, #ff9500);
+        height: 100%;
+        transition: width 1s ease;
+        box-shadow: 0 0 10px rgba(255, 100, 0, 0.8);
+      }
+
+      .fire-particle {
+        position: fixed;
+        width: 4px;
+        height: 4px;
+        background: #ff6400;
+        border-radius: 50%;
+        pointer-events: none;
+        animation: rise 3s linear infinite;
+      }
+
+      @keyframes rise {
+        0% {
+          transform: translateY(0) scale(1);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-100vh) scale(0);
+          opacity: 0;
+        }
+      }
+
+      .back-button {
+        transition: all 0.3s ease;
+      }
+
+      .back-button:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 20px rgba(255, 100, 0, 0.8);
+      }
+
+      @media (max-width: 768px) {
+        .pixel-font {
+          font-size: 0.6rem;
+        }
+      }
+    </style>
+  </head>
+  <body class="min-h-screen p-4 md:p-8">
+    <div class="scanline"></div>
+
+    <div class="max-w-6xl mx-auto">
+      <!-- Back button -->
+      <button
+        onclick="goBack()"
+        class="back-button bg-red-600 hover:bg-red-700 text-white px-4 md:px-6 py-2 md:py-3 rounded-lg mb-6 md:mb-8 text-xs md:text-sm border-2 border-orange-400"
+      >
+        ← VOLVER AL MENÚ
+      </button>
+
+      <!-- Character Header -->
+      <div class="text-center mb-8 md:mb-12">
+        <div class="text-6xl md:text-9xl mb-4 md:mb-6">🔥</div>
+        <h1 class="text-3xl md:text-6xl text-orange-400 glow-red mb-4">
+          CARBA117
+        </h1>
+        <p class="text-sm md:text-xl text-red-300">THE FIRE LEGEND</p>
+      </div>
+
+      <!-- Story Section -->
+      <div
+        class="bg-black bg-opacity-70 border-4 border-orange-500 rounded-lg p-6 md:p-8 mb-6 md:mb-8"
+      >
+        <h2
+          class="text-xl md:text-3xl text-orange-400 mb-4 md:mb-6 text-center"
+        >
+          HISTORIA
+        </h2>
+        <div class="text-xs md:text-sm text-gray-300 leading-relaxed space-y-4">
+          <p>
+            En las profundidades del volcán Infernus, nació una leyenda.
+            Carba117 emergió de las llamas primordiales hace 117 años, forjado
+            en el fuego más puro que jamás haya existido.
+          </p>
+          <p>
+            Su poder es inigualable. Cada paso que da deja un rastro de cenizas.
+            Sus ojos brillan con la intensidad de mil soles. Dicen que puede
+            convertir el hielo más frío en vapor con solo su presencia.
+          </p>
+          <p>
+            Maestro de las llamas, protector de los reinos ardientes, Carba117
+            ha jurado mantener el equilibrio entre el calor y el frío. Su
+            misión: encontrar las 7 Brasas Eternernas y evitar que caigan en
+            manos equivocadas.
+          </p>
+          <p class="text-orange-400 font-bold">
+            "El fuego no destruye... transforma. Y yo soy la transformación
+            personificada."
+          </p>
+        </div>
+      </div>
+
+      <!-- Stats Section -->
+      <div
+        class="bg-black bg-opacity-70 border-4 border-orange-500 rounded-lg p-6 md:p-8 mb-6 md:mb-8"
+      >
+        <h2 class="text-xl md:text-3xl text-orange-400 mb-6 text-center">
+          ESTADÍSTICAS
+        </h2>
+
+        <div class="space-y-4">
+          <div>
+            <div class="flex justify-between mb-2 text-xs md:text-sm">
+              <span class="text-red-300">PODER DE FUEGO</span>
+              <span class="text-orange-400">98/100</span>
+            </div>
+            <div class="stat-bar">
+              <div class="stat-fill" style="width: 98%"></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="flex justify-between mb-2 text-xs md:text-sm">
+              <span class="text-red-300">VELOCIDAD</span>
+              <span class="text-orange-400">85/100</span>
+            </div>
+            <div class="stat-bar">
+              <div class="stat-fill" style="width: 85%"></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="flex justify-between mb-2 text-xs md:text-sm">
+              <span class="text-red-300">RESISTENCIA</span>
+              <span class="text-orange-400">95/100</span>
+            </div>
+            <div class="stat-bar">
+              <div class="stat-fill" style="width: 95%"></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="flex justify-between mb-2 text-xs md:text-sm">
+              <span class="text-red-300">INTELIGENCIA</span>
+              <span class="text-orange-400">78/100</span>
+            </div>
+            <div class="stat-bar">
+              <div class="stat-fill" style="width: 78%"></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="flex justify-between mb-2 text-xs md:text-sm">
+              <span class="text-red-300">CARISMA</span>
+              <span class="text-orange-400">90/100</span>
+            </div>
+            <div class="stat-bar">
+              <div class="stat-fill" style="width: 90%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Abilities Section -->
+      <div
+        class="bg-black bg-opacity-70 border-4 border-orange-500 rounded-lg p-6 md:p-8"
+      >
+        <h2 class="text-xl md:text-3xl text-orange-400 mb-6 text-center">
+          HABILIDADES ESPECIALES
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div
+            class="border-2 border-red-500 p-4 rounded-lg bg-red-900 bg-opacity-30"
+          >
+            <h3 class="text-sm md:text-lg text-orange-300 mb-2">
+              🔥 INFERNO SUPREMO
+            </h3>
+            <p class="text-xs text-gray-400">
+              Desata un tornado de fuego que devora todo a su paso.
+            </p>
+          </div>
+
+          <div
+            class="border-2 border-red-500 p-4 rounded-lg bg-red-900 bg-opacity-30"
+          >
+            <h3 class="text-sm md:text-lg text-orange-300 mb-2">
+              ☄️ METEORO ARDIENTE
+            </h3>
+            <p class="text-xs text-gray-400">
+              Invoca meteoritos de magma desde el cielo.
+            </p>
+          </div>
+
+          <div
+            class="border-2 border-red-500 p-4 rounded-lg bg-red-900 bg-opacity-30"
+          >
+            <h3 class="text-sm md:text-lg text-orange-300 mb-2">
+              🌋 ERUPCIÓN VOLCÁNICA
+            </h3>
+            <p class="text-xs text-gray-400">
+              Crea un volcán temporal que expulsa lava.
+            </p>
+          </div>
+
+          <div
+            class="border-2 border-red-500 p-4 rounded-lg bg-red-900 bg-opacity-30"
+          >
+            <h3 class="text-sm md:text-lg text-orange-300 mb-2">
+              ♨️ REGENERACIÓN ÍGNEA
+            </h3>
+            <p class="text-xs text-gray-400">
+              Se cura absorbiendo el calor del ambiente.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function goBack() {
+        window.location.href = "index.html";
+      }
+
+      // Create fire particles
+      setInterval(() => {
+        const particle = document.createElement("div");
+        particle.className = "fire-particle";
+        particle.style.left = Math.random() * window.innerWidth + "px";
+        particle.style.bottom = "0";
+        particle.style.animationDuration = Math.random() * 2 + 2 + "s";
+        document.body.appendChild(particle);
+
+        setTimeout(() => {
+          particle.remove();
+        }, 3000);
+      }, 200);
+    </script>
+  </body>
+</html>
